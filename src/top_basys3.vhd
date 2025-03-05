@@ -83,12 +83,11 @@ component sevenseg_decoder is
     port( i_Hex : in std_logic_vector(3 downto 0);
           o_seg_n : out std_logic_vector(6 downto 0));
           
-    end component sevenseg_decoder;
+    end component;
     signal w_7SD_EN_n : std_logic;
 begin 
   -- create wire to connect button to 7SD enable (active-low)
-w_7SD_EN_n  <= not btnC;
-an  <= (0 => w_7SD_EN_n, others => '1');
+
   
 
 	-- PORT MAPS ----------------------------------------
@@ -106,5 +105,11 @@ an  <= (0 => w_7SD_EN_n, others => '1');
 	-- display 7SD 0 only when button pushed
 	-- other 7SD are kept off
 	-----------------------------------------------------
+w_7SD_EN_n  <= not btnC;
+
+an(0)   <= w_7SD_EN_n;
+an(1)   <= '1';
+an(2)   <= '1';
+an(3)   <= '1';
 
 end top_basys3_arch;
